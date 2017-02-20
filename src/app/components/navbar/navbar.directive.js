@@ -12,6 +12,12 @@
       replace: true,
       transclude: true,
       templateUrl: 'app/components/navbar/navbar.html',
+      scope: {
+          creationDate: '='
+      },
+      controller: NavbarController,
+      controllerAs: 'vm',
+      bindToController: true,
       compile: function(element, attrs) {  // (1)
         var li, liElements, links, index, length;
    
@@ -23,6 +29,22 @@
         }
       }
     };
+
     return directive;
+
+    /** @ngInject */
+    function NavbarController() {
+      var vm = this;
+
+      angular.element(document).ready(function () {
+        angular.element(".navbar-toggle").on("click", function () {
+            angular.element(this).toggleClass("active");
+        });
+      });
+
+      // "vm.creationDate" is available by directive option "bindToController: true"
+      // vm.relativeDate = moment(vm.creationDate).fromNow();
+    }
   }
+
 })();
