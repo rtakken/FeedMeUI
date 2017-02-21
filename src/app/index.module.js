@@ -13,6 +13,7 @@
        'ui.router', 
        'ui.bootstrap', 
        'toastr',
-       'webcam']);
+       'webcam',
+       'ngWebSocket']);
 
 })();
