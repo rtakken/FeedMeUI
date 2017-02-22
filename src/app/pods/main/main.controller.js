@@ -15,27 +15,6 @@
 
     activate();
 
-    function connect(port) {
-      var video = document.getElementById("video");
-      vm.socket = new WebSocket("ws://testme.localtunnel.me/websocket");
-      // Request the video stream once connected
-      vm.socket.onopen = function () {
-          console.log("Connected!");
-          readCamera();
-      };
-
-      // Currently, all returned messages are video data. However, vm is
-      // extensible with full-spec JSON-RPC.
-      vm.socket.onmessage = function (messageEvent) {
-          video.src = "data:image/jpeg;base64," + messageEvent.data;
-      };
-    }
-
-    // Requests video stream
-    function readCamera() {
-        vm.socket.send("read_camera");
-    }
-
     function activate() {
       getWebDevTec();
       $timeout(function() {
@@ -44,6 +23,7 @@
     }
 
     function showToastr() {
+      vm.socket.send("donation");
       toastr.info('Thank you for your donations');
       vm.classAnimation = '';
     }
@@ -55,6 +35,5 @@
         awesomeThing.rank = Math.random();
       });
     }
-    connect();
   }
 })();
