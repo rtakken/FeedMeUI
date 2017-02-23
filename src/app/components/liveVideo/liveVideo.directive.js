@@ -12,10 +12,13 @@
       restrict: 'E',
       replace: true,
       transclude: true,
+      scope: {
+        websocket: '='
+      },
       templateUrl: 'app/components/livevideo/livevideo.html',
-      compile: function() {
+      link: function(scope, element, attrs) {
         var video = document.getElementById("video");
-        socket = new WebSocket("ws://e98d4295.ngrok.io/websocket");
+        socket = new WebSocket(scope.websocket);
         // Request the video stream once connected
         socket.onopen = function () {
             console.log("Connected!");

@@ -12,6 +12,7 @@
     vm.classAnimation = '';
     vm.creationDate = 1487341829373;
     vm.showToastr = showToastr;
+    vm.webSocketValue = 'ws://770f377d.ngrok.io/websocket';
 
     activate();
 
